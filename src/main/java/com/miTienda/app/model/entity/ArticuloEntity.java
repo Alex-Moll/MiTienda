@@ -65,5 +65,9 @@ public class ArticuloEntity implements Serializable {
 
     @Column(name = "soft_delete")
     private boolean softDelete = false;
-    
+
+
+
+
+
 }
