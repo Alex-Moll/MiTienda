@@ -6,8 +6,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
-
-
 @Setter
 @Getter
 @Entity
@@ -21,7 +19,7 @@ public class PagoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "pago_Id")
+    @Column(name = "pago_id")
     private Long id;
 
 

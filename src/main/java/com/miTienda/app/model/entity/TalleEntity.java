@@ -23,7 +23,7 @@ public class TalleEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "talle_Id")
+    @Column(name = "talle_id")
     private Long id;
 
     @NotNull(message = "El campo talle no puede ser Nulo")

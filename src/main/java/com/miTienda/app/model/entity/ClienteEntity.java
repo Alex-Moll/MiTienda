@@ -26,7 +26,7 @@ public class ClienteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "cliente_Id")
+    @Column(name = "cliente_id")
     private Long id;
 
     @NotNull(message = "El campo nombre no puede ser Nulo")
@@ -53,12 +53,11 @@ public class ClienteEntity {
     
     private double limiteCredito;
     
-    private List<String> notificaciones;
+//    private List<String> notificaciones;
     
     private boolean activo;
 
     @CreationTimestamp
-    @Column(name = "comment_date")
     private Timestamp timestamp;
 
     @Column(name = "soft_delete")

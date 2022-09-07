@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -21,7 +23,7 @@ import java.sql.Timestamp;
 @Builder
 @SQLDelete(sql = "UPDATE articles SET soft_delete = true WHERE id = ?")
 @Where(clause = "soft_delete = false")
-@Table(name = "articles")
+@Table(name = "articulos")
 public class ArticuloEntity implements Serializable {
 
     @Id
@@ -33,6 +35,8 @@ public class ArticuloEntity implements Serializable {
     @NotBlank(message = "El campo codigo no puede estar en Blanco")
     @NotEmpty(message = "El campo codigo no puede estar Vacio")
     private String codigo;
+
+    private String tipo;
     
     @NotNull(message = "El campo detalle no puede ser Nulo")
     @NotBlank(message = "El campo detalle no puede estar en Blanco")
@@ -41,33 +45,31 @@ public class ArticuloEntity implements Serializable {
 
     private String marca;
 
-    @OneToMany
-    @JoinColumn(name = "proveedor_proveedor_id")
-    private ProveedorEntity proveedor;
+    @ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
+    @JoinTable(name="articulo_proveedor",
+            joinColumns = @JoinColumn(name="articulo_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name="proveedor_id", nullable = false))
+    private Set<ProveedorEntity> proveedores;
 
     private String color;
 
-    private String talle;
+    private String medida;
 
     private double stock;
 
     private double stockMin;
 
-    private double costo;
+    private double precioCosto;
 
-    private double margen;
+    private double ganancia;
 
-    private double venta;
+    private double precioVenta;
 
     @CreationTimestamp
-    @Column(name = "comment_date")
     private Timestamp timestamp;
 
     @Column(name = "soft_delete")
     private boolean softDelete = false;
-
-
-
 
 
 }

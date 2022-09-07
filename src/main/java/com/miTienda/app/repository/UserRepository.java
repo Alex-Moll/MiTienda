@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByEmail(String email);
 
-    @Query("SELECT u FROM UserEntity u WHERE u.softDelete = false")
-    List<UserEntity> findBySoftDelete();
+//    @Query("SELECT * FROM users WHERE soft_delete = false")
+//    List<UserEntity> findBySoftDelete();
 
 }

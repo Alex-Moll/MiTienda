@@ -7,6 +7,7 @@ public enum RoleEnum {
     public String getFullRoleName() {
         return PREFIX + name();
     }
+
     public String getSimpleRoleName() {
         return name();
     }

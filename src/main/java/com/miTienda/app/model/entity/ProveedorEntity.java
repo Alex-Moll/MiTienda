@@ -2,6 +2,7 @@ package com.miTienda.app.model.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -26,7 +27,7 @@ public class ProveedorEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "proveedor_Id")
+    @Column(name = "proveedor_id")
     private Long id;
 
     @NotNull(message = "El campo nombre no puede ser Nulo")
@@ -40,8 +41,10 @@ public class ProveedorEntity implements Serializable {
     
     private double saldo;
 
+    @ManyToMany (mappedBy = "proveedores", cascade= {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<ArticuloEntity> articulos;
+
     @CreationTimestamp
-    @Column(name = "comment_date")
     private Timestamp timestamp;
 
     @Column(name = "soft_delete")
