@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +37,9 @@ public class ArticuloEntity implements Serializable {
     @NotEmpty(message = "El campo codigo no puede estar Vacio")
     private String codigo;
 
-    private String tipo;
+    @OneToOne
+    @JoinColumn(name = "articulo_tipo_articulo")
+    private TipoArticuloEntity tipoArticulo;
     
     @NotNull(message = "El campo detalle no puede ser Nulo")
     @NotBlank(message = "El campo detalle no puede estar en Blanco")
@@ -49,7 +52,7 @@ public class ArticuloEntity implements Serializable {
     @JoinTable(name="articulo_proveedor",
             joinColumns = @JoinColumn(name="articulo_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name="proveedor_id", nullable = false))
-    private Set<ProveedorEntity> proveedores;
+    private List<ProveedorEntity> proveedores = new ArrayList<>();
 
     private String color;
 

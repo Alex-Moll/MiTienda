@@ -1,7 +1,5 @@
 package com.miTienda.app.utils;
 
-
-
 public class EmailUtils {
 
     public static String content(String tittle, String msg) {

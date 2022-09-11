@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.stream.IntStream;
 
 @Component
@@ -21,8 +20,8 @@ public class InitializerSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (userRepository.findAll().isEmpty()) {
-            this.createUsers(1, "admin");
-            this.createUsers(1, "user");
+            this.createUsers(2, "admin");
+            this.createUsers(2, "user");
         }
 
     }

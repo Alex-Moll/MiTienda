@@ -11,17 +11,16 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.miTienda.app.service.AwsService;
 import com.miTienda.app.utils.AwsUtils;
 import com.miTienda.app.utils.MultiPartFileClass;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-
-import static com.amazonaws.auth.profile.internal.ProfileKeyConstants.AWS_ACCESS_KEY_ID;
-import static com.amazonaws.auth.profile.internal.ProfileKeyConstants.AWS_SECRET_ACCESS_KEY;
 
 @Service
 public class AwsServiceImpl implements AwsService {
@@ -38,17 +37,8 @@ public class AwsServiceImpl implements AwsService {
     @Autowired
     private AwsUtils awsUtils;
 
-    //-------------------------------------
-    @Bean
-    public AmazonS3 S3() {
-
-        AWSCredentials awsCredentials = new BasicAWSCredentials( AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY);
-
-        return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.SA_EAST_1).build();
-    }
-    //------------------------------------
-
     private void uploadFile2Asw3 (String fileName, File file){
+
         this.amazonS3.putObject(new PutObjectRequest(bucket,fileName,file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
 
@@ -67,8 +57,10 @@ public class AwsServiceImpl implements AwsService {
 
     @Override
     public String uploadFileFromBase64(String base64) throws IOException {
+
         if (base64  == null)
             return null;
+
         if (base64.contains("data:image/")) {
             String[] parts = base64.split(",");
             String header = parts[0];

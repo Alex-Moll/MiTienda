@@ -2,7 +2,6 @@ package com.miTienda.app.service.impl;
 
 import com.miTienda.app.auth.service.JwtUtils;
 import com.miTienda.app.auth.service.impl.UserDetailsCustomService;
-import com.miTienda.app.auth.service.impl.UserDetailsServiceImpl;
 import com.miTienda.app.auth.utility.RoleEnum;
 import com.miTienda.app.model.entity.RoleEntity;
 import com.miTienda.app.model.entity.UserEntity;

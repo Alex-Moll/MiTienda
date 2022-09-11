@@ -10,13 +10,17 @@ import java.io.IOException;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-    @Value("${alkemy.ong.email.templateid}")
-    private String templateId;
-    @Value("${alkemy.ong.email.sender}")
+
+    @Value("${mitienda.email.sender}")
     private String organizationId;
-    @Value("${alkemy.ong.email.apikey}")
+
+    @Value("${mitienda.email.apikey}")
     private String sendGridKey;
-    @Value("${alkemy.ong.email.templateidcontact}")
+
+    @Value("${mitienda.email.templateid}")
+    private String templateId;
+
+    @Value("${mitienda.email.templateidcontact}")
     private String templateContactId;
 
     public void sendEmail(Mail email) throws IOException {
@@ -42,10 +46,10 @@ public class EmailServiceImpl implements EmailService {
 
     public void checkFromRequest(String to, String from) throws IOException {
         if (from.equalsIgnoreCase("userRegistered"))
-            getEmailReady(to, templateId, EmailUtils.content("Bienvenido!", "Gracias por registrarse!"), "ALKEMY ONG");
+            getEmailReady(to, templateId, EmailUtils.content("Bienvenido!", "Gracias por registrarse!"), "Mi Tienda");
         else
             getEmailReady(to, templateContactId, EmailUtils.content("Solicitud recibida",
                     "Muchas gracias por \n " + "contactarte con nosotros \n " +
-                            "te mandaremos un mensaje a la brevedad"), "Somos mas Ong");
+                            "te mandaremos un mensaje a la brevedad"), "Somos Mi Tienda");
     }
 }

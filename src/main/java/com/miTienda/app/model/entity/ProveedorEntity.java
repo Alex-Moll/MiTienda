@@ -2,6 +2,8 @@ package com.miTienda.app.model.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,7 +26,6 @@ import org.hibernate.annotations.Where;
 @Table(name = "proveedores")
 public class ProveedorEntity implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "proveedor_id")
@@ -42,7 +43,7 @@ public class ProveedorEntity implements Serializable {
     private double saldo;
 
     @ManyToMany (mappedBy = "proveedores", cascade= {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<ArticuloEntity> articulos;
+    private List<ArticuloEntity> articulos = new ArrayList();
 
     @CreationTimestamp
     private Timestamp timestamp;

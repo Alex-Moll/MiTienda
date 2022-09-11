@@ -31,36 +31,46 @@ public class MultiPartFileClass implements MultipartFile {
     @Override
     public String getName() {
         return this.FILE_NAME;
+
     }
 
     @Override
     public String getOriginalFilename() {
+
         return this.FILE_NAME+"."+this.EXTENSION;
+
     }
 
     @Override
     public String getContentType() {
         return this.TYPE;
+
     }
 
     @Override
     public boolean isEmpty() {
+
         return this.FILE_CONTENT.length == 0 || this.FILE_CONTENT == null;
+
     }
 
     @Override
     public long getSize() {
+
         return this.FILE_CONTENT.length;
     }
 
     @Override
     public byte[] getBytes() throws IOException {
         return FILE_CONTENT;
+
     }
 
     @Override
     public InputStream getInputStream() throws IOException {
+
         return new ByteArrayInputStream(FILE_CONTENT);
+
     }
 
     @Override
@@ -72,5 +82,6 @@ public class MultiPartFileClass implements MultipartFile {
     public void transferTo(File file) throws IOException, IllegalStateException {
 
     }
+
 
 }

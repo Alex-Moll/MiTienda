@@ -14,8 +14,6 @@ import com.miTienda.app.service.UserService;
 import com.miTienda.app.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,20 +27,25 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtUtils jwtUtils;
 
+
     public UserResponse register(UserRequest userRequest) throws UsernameNotFoundException, IOException {
         return null;
     }
 
+
     public AuthResponse login(AuthRequest authRequest) {
         return null;
     }
+
 
     public UserDetailsResponse getPersonalInformation(String token) {
         return null;

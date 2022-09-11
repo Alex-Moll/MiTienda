@@ -20,15 +20,13 @@ public class UserRequest {
     @NotNull(message = "the firstName can't be null")
     @NotEmpty(message = "the firstName can't be empty")
     @NotBlank(message = "the firstName can't  be blank")
-    @ApiModelProperty(notes = "First name of the User.",
-            example = "Martin", required = true)
+    @ApiModelProperty(notes = "First name of the User.", example = "Alejandro", required = true)
     private String firstName;
 
     @NotNull(message = "the lastName can't be null")
     @NotEmpty(message = "the lastName can't be empty")
     @NotBlank(message = "the lastName can't  be blank")
-    @ApiModelProperty(notes = "Last name of the User.",
-            example = "Gutierrez", required = true)
+    @ApiModelProperty(notes = "Last name of the User.", example = "Moll", required = true)
     private String lastName;
 
     @NotNull(message = "the email can't be null")

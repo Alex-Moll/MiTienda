@@ -4,7 +4,6 @@ package com.miTienda.app.service;
 import com.miTienda.app.model.request.UserUpdateRequest;
 import com.miTienda.app.model.response.PaginationResponse;
 import com.miTienda.app.model.response.UserDetailsResponse;
-import com.miTienda.app.model.response.UsersPaginationResponse;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,3 +24,4 @@ public interface UserService {
 
 
 }
+

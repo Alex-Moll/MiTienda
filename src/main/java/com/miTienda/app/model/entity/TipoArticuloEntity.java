@@ -19,11 +19,11 @@ import java.io.Serializable;
 @SQLDelete(sql = "UPDATE grupos SET soft_delete = true WHERE id = ?")
 @Where(clause = "soft_delete = false")
 @Table(name = "grupos")
-public class GrupoEntity implements Serializable {
+public class TipoArticuloEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "grupo_id")
+    @Column(name = "tipo_articulo-id")
     private Long id;
 
     @NotNull(message = "El campo nombre no puede ser Nulo")

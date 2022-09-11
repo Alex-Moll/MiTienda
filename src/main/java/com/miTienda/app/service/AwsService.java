@@ -1,6 +1,5 @@
 package com.miTienda.app.service;
 
-
 import java.io.IOException;
 
 public interface AwsService {
