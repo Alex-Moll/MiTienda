@@ -3,7 +3,6 @@ package com.miTienda.app.controller;
 import com.miTienda.app.model.request.ProveedorRequest;
 import com.miTienda.app.model.response.PaginationResponse;
 import com.miTienda.app.model.response.ProveedorResponse;
-import com.miTienda.app.repository.ProveedorRepository;
 import com.miTienda.app.service.ProveedorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
@@ -81,6 +81,18 @@ public class ProveedorController {
         proveedorService.delete(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+    }
+
+    @ApiOperation(value = "Obtiene un Proveedor por id", notes = "")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna un Proveedor"),
+            @ApiResponse(code = 404, message = "EL Id ingresado no existe")})
+    @GetMapping("{id}")
+    public ResponseEntity<ProveedorResponse> getById (@PathVariable @Valid @NotNull @NotBlank Long id) throws Exception {
+
+        ProveedorResponse response = proveedorService.getById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 

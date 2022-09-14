@@ -39,23 +39,20 @@ public class ProveedorServiceImpl implements ProveedorService {
     @Override
     public ProveedorResponse update(Long id, ProveedorRequest request) throws Exception {
 
-        if(proveedorRepository.findById(id).isPresent()) {
+        if(!proveedorRepository.findById(id).isPresent()) {
 
-            ProveedorEntity entityFound = proveedorRepository.findById(id).orElseThrow();
-
-            ProveedorEntity entityUpdate = proveedorMapper.entityAndRequestToResponse(entityFound, request);
-
-            ProveedorEntity entitySave = proveedorRepository.save(entityUpdate);
-
-            ProveedorResponse response = proveedorMapper.entityToResponse(entitySave);
-
-            return response;
-
-        }else {
-
-            throw new Exception("No existe ese Proveedor con ese Id");
-
+            throw new Exception("No existe Proveedor con el Id : " + id);
         }
+
+        ProveedorEntity entityFound = proveedorRepository.findById(id).orElseThrow();
+
+        ProveedorEntity entityUpdate = proveedorMapper.entityAndRequestToResponse(entityFound, request);
+
+        ProveedorEntity entitySave = proveedorRepository.save(entityUpdate);
+
+        ProveedorResponse response = proveedorMapper.entityToResponse(entitySave);
+
+        return response;
 
     }
 
@@ -82,16 +79,16 @@ public class ProveedorServiceImpl implements ProveedorService {
 
         if(! proveedorRepository.findById(id).isPresent()) {
 
-            throw new Exception("No existe ese Proveedor con ese Id");
+            throw new Exception("No existe Proveedor con el Id : " + id);
 
-        }else {
-
-            ProveedorEntity entity = proveedorRepository.findById(id).get();
-
-            ProveedorResponse response = proveedorMapper.entityToResponse(entity);
-
-            return response;
         }
+
+        ProveedorEntity entity = proveedorRepository.findById(id).get();
+
+        ProveedorResponse response = proveedorMapper.entityToResponse(entity);
+
+        return response;
+
 
     }
 
@@ -102,7 +99,7 @@ public class ProveedorServiceImpl implements ProveedorService {
         Optional<ProveedorEntity> entity = proveedorRepository.findById(id);
 
         if(!entity.isPresent()) {
-            throw new Exception("No existe ese Proveedor con el Id : " + id);
+            throw new Exception("No existe Proveedor con el Id : " + id);
         }
 
         proveedorRepository.delete(entity.get());

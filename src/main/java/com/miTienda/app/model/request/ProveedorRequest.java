@@ -7,12 +7,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.Nullable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
-import java.util.Set;
 
 @Builder
 @Getter

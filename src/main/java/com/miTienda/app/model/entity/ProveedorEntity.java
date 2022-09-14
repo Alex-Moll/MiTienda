@@ -21,7 +21,7 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE proveedores SET soft_delete = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE proveedores SET soft_delete = true WHERE proveedor_id = ?")
 @Where(clause = "soft_delete = false")
 @Table(name = "proveedores")
 public class ProveedorEntity implements Serializable {

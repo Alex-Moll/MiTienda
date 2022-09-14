@@ -1,30 +1,26 @@
-package com.miTienda.app.model.entity;
+package com.miTienda.app.model.request;
 
+import com.miTienda.app.model.entity.ProveedorEntity;
+import com.miTienda.app.model.entity.TipoArticuloEntity;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE articulos SET soft_delete = true WHERE articulo_id = ?")
-@Where(clause = "soft_delete = false")
-@Table(name = "articulos")
-public class ArticuloEntity implements Serializable {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(description = "Clase que representa a los Articulos")
+public class ArticuloRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -39,7 +35,7 @@ public class ArticuloEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = "tipo_articulo")
     private TipoArticuloEntity tipoArticulo;
-    
+
     @NotNull(message = "El campo detalle no puede ser Nulo")
     @NotBlank(message = "El campo detalle no puede estar en Blanco")
     @NotEmpty(message = "El campo detalle no puede estar Vacio")
@@ -74,5 +70,4 @@ public class ArticuloEntity implements Serializable {
 
     @Column(name = "soft_delete")
     private boolean softDelete = false;
-
 }

@@ -13,7 +13,7 @@ public class PaginationUtils {
     private Integer page;
     private static final Integer PAGE_NUMBER = 0;
     private Integer size;
-    private static final Integer PAGE_SIZE = 5;
+    private static final Integer PAGE_SIZE = 3;
     private String path;
     private Page<?> pageObject;
 
@@ -48,21 +48,10 @@ public class PaginationUtils {
         this.pageObject = repository.findAll(getPageWithSizeElements);
     }
 
-
-    /**
-     * Method to get the page object
-     *
-     * @return a page object
-     */
     public Page<?> getPage() {
         return pageObject;
     }
 
-    /**
-     * Method to get the previous page url
-     *
-     * @return a string value
-     */
     public String getPrevious() {
         if(pageObject.hasPrevious() && pageObject.hasContent()){
             return String.format(path, page-1, size);
@@ -70,15 +59,11 @@ public class PaginationUtils {
         return null;
     }
 
-    /**
-     * Method to get the next page url
-     *
-     * @return a string value
-     */
     public String getNext() {
         if(pageObject.hasNext()){
             return String.format(path, page+1, size);
         }
         return null;
     }
+
 }
