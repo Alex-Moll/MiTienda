@@ -1,5 +1,7 @@
 package com.miTienda.app.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -27,7 +29,7 @@ import java.util.List;
 public class ArticuloEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "articulo_id")
     private Long id;
 
@@ -37,16 +39,20 @@ public class ArticuloEntity implements Serializable {
     private String codigo;
 
     @OneToOne
-    @JoinColumn(name = "tipo_articulo")
-    private TipoArticuloEntity tipoArticulo;
+    @JoinColumn(name = "categoria")
+    private CategoriaEntity categoria;
     
     @NotNull(message = "El campo detalle no puede ser Nulo")
     @NotBlank(message = "El campo detalle no puede estar en Blanco")
     @NotEmpty(message = "El campo detalle no puede estar Vacio")
     private String detalle;
 
-    private String marca;
+    @OneToOne
+    @JoinColumn(name = "marca")
+    private MarcaEntity marca;
 
+//    @JsonManagedReference
+    @JsonIgnore
     @ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
     @JoinTable(name="articulo_proveedor",
             joinColumns = @JoinColumn(name="articulo_id", nullable = false),
@@ -55,19 +61,21 @@ public class ArticuloEntity implements Serializable {
 
     private String proveedor_id;
 
+    private String imagen;
+
     private String color;
 
     private String medida;
 
-    private double stock;
+    private Double stock;
 
-    private double stockMin;
+    private Double stockMin;
 
-    private double precioCosto;
+    private Double precioCosto;
 
-    private double margen;
+    private Double margen;
 
-    private double precioVenta;
+    private Double precioVenta;
 
     @CreationTimestamp
     private Timestamp timestamp;

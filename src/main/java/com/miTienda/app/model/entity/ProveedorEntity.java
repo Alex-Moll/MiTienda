@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
@@ -18,6 +18,7 @@ import org.hibernate.annotations.Where;
 @Setter
 @Getter
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -27,21 +28,31 @@ import org.hibernate.annotations.Where;
 public class ProveedorEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "proveedor_id")
     private Long id;
 
-    @NotNull(message = "El campo nombre no puede ser Nulo")
-    @NotBlank(message = "El campo nombre no puede estar en Blanco")
-    @NotEmpty(message = "El campo nombre no puede estar Vacio")
-    private String nombre;
+    @NotNull(message = "El campo razonSocial no puede ser Nulo")
+    @NotBlank(message = "El campo razonSocial no puede estar en Blanco")
+    @NotEmpty(message = "El campo razonSocial no puede estar Vacio")
+    private String razonSocial;
     
     private String domicilio;
 
-    private String cuit;
-    
-    private double saldo;
+    private String ciudad;
 
+    private String cuit;
+
+    private String iibb;
+
+    private String telefono;
+
+    private String telefono1;
+    
+    private Double saldo;
+
+//    @JsonBackReference
+    @JsonIgnore
     @ManyToMany (mappedBy = "proveedores", cascade= {CascadeType.MERGE, CascadeType.PERSIST})
     private List<ArticuloEntity> articulos = new ArrayList();
 
@@ -50,6 +61,8 @@ public class ProveedorEntity implements Serializable {
 
     @Column(name = "soft_delete")
     private boolean softDelete = false;
-    
-    
+
+
+    public ProveedorEntity(String razonSocial, String domicilio, String ciudad, String cuit, String iibb, String telefono, String telefono1, double saldo, Timestamp timestamp, boolean b) {
+    }
 }

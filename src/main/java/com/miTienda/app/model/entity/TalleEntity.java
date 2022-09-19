@@ -22,7 +22,7 @@ import java.io.Serializable;
 public class TalleEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "talle_id")
     private Long id;
 

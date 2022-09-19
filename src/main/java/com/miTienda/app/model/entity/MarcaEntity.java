@@ -16,13 +16,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE tipo_articulos SET soft_delete = true WHERE tipo_id = ?")
+@SQLDelete(sql = "UPDATE marcas SET soft_delete = true WHERE articulo_id = ?")
 @Where(clause = "soft_delete = false")
-@Table(name = "tipo_articulos")
-public class TipoArticuloEntity implements Serializable {
+@Table(name = "marcas")
+public class MarcaEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tipo_id")
     private Long id;
 
@@ -34,5 +34,6 @@ public class TipoArticuloEntity implements Serializable {
     @Column(name = "soft_delete")
     private boolean softDelete = false;
 
-
+    public MarcaEntity(String nombre, boolean softDelete) {
+    }
 }

@@ -15,8 +15,12 @@ public class ProveedorMapper {
     public ProveedorEntity requestToEntity(ProveedorRequest request){
 
         return ProveedorEntity.builder()
-                .nombre(request.getNombre())
-                .domicilio(request.getDomicilio())
+                .razonSocial(request.getRazonSocial().toUpperCase())
+                .domicilio(request.getDomicilio().toUpperCase())
+                .ciudad(request.getCiudad().toUpperCase())
+                .iibb(request.getIibb())
+                .telefono(request.getTelefono())
+                .telefono1(request.getTelefono1())
                 .cuit(request.getCuit())
                 .saldo(request.getSaldo())
                 .timestamp(request.getTimestamp())
@@ -28,9 +32,13 @@ public class ProveedorMapper {
 
         return ProveedorResponse.builder()
                 .id(entity.getId())
-                .nombre(entity.getNombre())
-                .domicilio(entity.getDomicilio())
+                .razonSocial(entity.getRazonSocial().toUpperCase())
+                .domicilio(entity.getDomicilio().toUpperCase())
                 .cuit(entity.getCuit())
+                .ciudad(entity.getCiudad().toUpperCase())
+                .iibb(entity.getIibb())
+                .telefono(entity.getTelefono())
+                .telefono1(entity.getTelefono1())
                 .saldo(entity.getSaldo())
                 .timestamp(entity.getTimestamp())
                 .build();
@@ -47,9 +55,13 @@ public class ProveedorMapper {
 
     public ProveedorEntity entityAndRequestToResponse(ProveedorEntity entity, ProveedorRequest request) {
 
-        entity.setNombre(request.getNombre());
-        entity.setDomicilio(request.getDomicilio());
+        entity.setRazonSocial(request.getRazonSocial().toUpperCase());
+        entity.setDomicilio(request.getDomicilio().toUpperCase());
         entity.setCuit(request.getCuit());
+        entity.setCiudad(request.getCiudad().toUpperCase());
+        entity.setIibb(request.getIibb());
+        entity.setTelefono(request.getTelefono());
+        entity.setTelefono1(request.getTelefono1());
         entity.setSaldo(request.getSaldo());
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);

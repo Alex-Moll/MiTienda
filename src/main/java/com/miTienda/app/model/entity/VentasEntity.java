@@ -13,8 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Setter
-@Getter
+@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,7 +24,7 @@ import java.sql.Timestamp;
 public class VentasEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ventas_id")
     private Long id;
 
@@ -44,21 +43,21 @@ public class VentasEntity implements Serializable {
     @NotNull(message = "El campo cantidad no puede ser Nulo")
     @NotBlank(message = "El campo cantidad no puede estar en Blanco")
     @NotEmpty(message = "El campo cantidad no puede estar Vacio")
-    private double cantidad;
+    private Double cantidad;
 
-    private double descuento;
+    private Double descuento;
 
-    private double recargo;
+    private Double recargo;
 
-    private double importe;
+    private Double importe;
 
-    private double subtotal;
+    private Double subtotal;
 
-    private double descuento2;
+    private Double descuento2;
 
-    private double iva;
+    private Double iva;
 
-    private double total;
+    private Double total;
 
     @CreationTimestamp
     private Timestamp timestamp;

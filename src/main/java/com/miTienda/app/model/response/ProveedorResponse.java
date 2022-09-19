@@ -14,9 +14,13 @@ import java.sql.Timestamp;
 public class ProveedorResponse {
 
     private Long id;
-    private String nombre;
+    private String razonSocial;
     private String domicilio;
     private String cuit;
+    private String ciudad;
+    private String iibb;
+    private String telefono;
+    private String telefono1;
     private double saldo;
     private Timestamp timestamp;
     private boolean softDelete = false;

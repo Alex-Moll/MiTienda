@@ -36,7 +36,6 @@ public class ProveedorController {
     public ResponseEntity<ProveedorResponse> create(@Valid @RequestBody ProveedorRequest request) throws Exception {
 
         ProveedorResponse response = proveedorService.save(request);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
@@ -47,10 +46,9 @@ public class ProveedorController {
                             @ApiResponse( code = 400, message = "bad request"),
                             @ApiResponse( code = 403, message = "No tiene Permiso o Acceso")   })
     @PutMapping("/{id}")
-    public ResponseEntity<ProveedorResponse> update(@Valid @RequestBody ProveedorRequest request, @PathVariable @Valid @NotNull Long id) throws Exception {
+    public ResponseEntity<ProveedorResponse> update(@Valid @RequestBody ProveedorRequest request, @PathVariable @Valid Long id) throws Exception {
 
         ProveedorResponse response =  proveedorService.update(id, request);
-
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
@@ -60,6 +58,7 @@ public class ProveedorController {
     @ApiOperation(value = "Listar los Proveedores por Pagina ", notes = "Obtiene todos los Proveedores")
     @ApiResponses({ @ApiResponse(code = 200, message = "Encontro Proveedores"),
                     @ApiResponse(code = 400, message = "Bad Request"),
+                    @ApiResponse( code = 403, message = "No tiene Permiso o Acceso"),
                     @ApiResponse(code = 404, message = "No encontro el Proveedor por Id"),})
     @GetMapping
     public ResponseEntity<PaginationResponse> getAllPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -76,39 +75,26 @@ public class ProveedorController {
                             @ApiResponse( code = 400, message = "bad request"),
                             @ApiResponse( code = 403, message = "No tiene Permiso o Acceso")   })
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@Valid @PathVariable @NotNull Long id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable @Valid Long id) throws Exception {
 
         proveedorService.delete(id);
-
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
     }
 
     @ApiOperation(value = "Obtiene un Proveedor por id", notes = "")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna un Proveedor"),
-            @ApiResponse(code = 404, message = "EL Id ingresado no existe")})
+                            @ApiResponse( code = 403, message = "No tiene Permiso o Acceso"),
+                            @ApiResponse(code = 404, message = "EL Id ingresado no existe")})
     @GetMapping("{id}")
-    public ResponseEntity<ProveedorResponse> getById (@PathVariable @Valid @NotNull @NotBlank Long id) throws Exception {
+    public ResponseEntity<ProveedorResponse> getById (@PathVariable @Valid Long id) throws Exception {
 
         ProveedorResponse response = proveedorService.getById(id);
-
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

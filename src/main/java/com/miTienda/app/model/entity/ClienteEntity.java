@@ -2,7 +2,6 @@ package com.miTienda.app.model.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -19,13 +18,13 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE clients SET soft_delete = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE clientes SET soft_delete = true WHERE cliente_id = ?")
 @Where(clause = "soft_delete = false")
-@Table(name = "clients")
-public class ClienteEntity {
+@Table(name = "clientes")
+public class ClienteEntity implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id")
     private Long id;
 
@@ -34,26 +33,31 @@ public class ClienteEntity {
     @NotEmpty(message = "El campo nombre no puede estar Vacio")
     private String nombre;
 
-    @NotNull(message = "El campo apellido no puede ser Nulo")
-    @NotBlank(message = "El campo apellido no puede estar en Blanco")
-    @NotEmpty(message = "El campo apellido no puede estar Vacio")
-    private String apellido;
-    
+    @NotNull(message = "El campo direccion no puede ser Nulo")
+    @NotBlank(message = "El campo direccion no puede estar en Blanco")
+    @NotEmpty(message = "El campo direccion no puede estar Vacio")
     private String direccion;
-    
-    private String dni_cuit;
 
-    private String iva;
+    private String ciudad;
+    
+    private String dniCuit;
+
+    private String tipoIva;
     
     private String email;
-    
+
+    @NotNull(message = "El campo telefono no puede ser Nulo")
+    @NotBlank(message = "El campo telefono no puede estar en Blanco")
+    @NotEmpty(message = "El campo telefono no puede estar Vacio")
     private String telefono;
 
-    private double saldo;
+    private String telefono1;
+
+    private Double saldo;
     
-    private double limiteCredito;
+    private Double limiteCredito;
     
-//    private List<String> notificaciones;
+    private String observaciones;
     
     private boolean activo;
 
@@ -62,9 +66,7 @@ public class ClienteEntity {
 
     @Column(name = "soft_delete")
     private boolean softDelete = false;
-    
-    
-    
-    
-    
+
+    public ClienteEntity(String nombre, String direccion, String ciudad, String dniCuit, String tipoIva, String email, String telefono, String telefono1, double saldo, double limiteCredito, String observaciones, boolean activo, Timestamp timestamp, boolean softDelete) {
+    }
 }

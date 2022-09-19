@@ -20,17 +20,18 @@ public class ArticuloMapper {
 
         Double margen = (request.getPrecioVenta() / request.getPrecioCosto()) * 100;
 
-        margen = Math.round(margen*100.0)/100.0;
+        margen = (Math.round(margen*100.0)/100.0)-100;
 
         return ArticuloEntity.builder()
                 .codigo(request.getCodigo())
-                .tipoArticulo(request.getTipoArticulo())
-                .detalle(request.getDetalle())
+                .categoria(request.getCategoria())
+                .detalle(request.getDetalle().toUpperCase())
                 .marca(request.getMarca())
                 .proveedores(request.getProveedores())
                 .proveedor_id(request.getProveedor_id())
-                .color(request.getColor())
-                .medida(request.getMedida())
+                .imagen(request.getImagen())
+                .color(request.getColor().toUpperCase())
+                .medida(request.getMedida().toUpperCase())
                 .stock(request.getStock())
                 .stockMin(request.getStockMin())
                 .precioCosto(request.getPrecioCosto())
@@ -41,64 +42,51 @@ public class ArticuloMapper {
 
     }
 
-//    public ArticuloResponse entityToResponse(ArticuloEntity entity, boolean loadProveedores){
-//
-//        return ArticuloResponse.builder()
-//                .id(entity.getId())
-//                .codigo(entity.getCodigo())
-//                .tipoArticulo(entity.getTipoArticulo())
-//                .detalle(entity.getDetalle())
-//                .marca(entity.getMarca())
-//                .proveedor_id(entity.getProveedor_id())
-//                .proveedores(entity.getProveedores())
-//                .color(entity.getColor())
-//                .stock(entity.getStock())
-//                .precioCosto(entity.getPrecioCosto())
-//                .precioVenta(entity.getPrecioVenta())
-//                .timestamp(entity.getTimestamp())
-//                .build();
-//
-//    }
+    public ArticuloResponse entityToResponse(ArticuloEntity entity){
 
-    public ArticuloResponse entityToResponse(ArticuloEntity entity, boolean loadProveedores){
+        return ArticuloResponse.builder()
+                .id(entity.getId())
+                .codigo(entity.getCodigo())
+                .categoria(entity.getCategoria())
+                .detalle(entity.getDetalle())
+                .marca(entity.getMarca())
+                .proveedor_id(entity.getProveedor_id())
+                .proveedores(entity.getProveedores())
+                .imagen(entity.getImagen())
+                .color(entity.getColor())
+                .medida(entity.getMedida())
+                .stock(entity.getStock())
+                .stockMin(entity.getStockMin())
+                .precioCosto(entity.getPrecioCosto())
+                .margen(entity.getMargen())
+                .precioVenta(entity.getPrecioVenta())
+                .timestamp(entity.getTimestamp())
+                .build();
 
-        ArticuloResponse response = new ArticuloResponse();
-
-        response.setCodigo(entity.getCodigo());
-        response.setTipoArticulo(entity.getTipoArticulo());
-        response.setDetalle(entity.getDetalle());
-        response.setMarca(entity.getMarca());
-        response.setProveedor_id(entity.getProveedor_id());
-        response.setColor(entity.getColor());
-        response.setMedida(entity.getMedida());
-        response.setStock(entity.getStock());
-        response.setStockMin(entity.getStockMin());
-        response.setPrecioCosto(entity.getPrecioCosto());
-        response.setMargen(entity.getMargen());
-        response.setPrecioVenta(entity.getPrecioVenta());
-        response.setTimestamp(entity.getTimestamp());
-        response.setProveedores(entity.getProveedores());
-
-        return response;
     }
 
     public List<ArticuloResponse> listEntityToListResponse(List<ArticuloEntity> Articuloes){
         List<ArticuloResponse> responses = new ArrayList<>();
         for ( ArticuloEntity articulo: Articuloes){
-            responses.add(entityToResponse(articulo, true));
+            responses.add(entityToResponse(articulo));
         }
         return responses;
     }
 
     public ArticuloEntity entityAndRequestToResponse(ArticuloEntity entity, ArticuloRequest request) {
 
-        entity.setDetalle(request.getDetalle());
-        entity.setTipoArticulo(request.getTipoArticulo());
+        Double margen = (request.getPrecioVenta() / request.getPrecioCosto()) * 100;
+        margen = (Math.round(margen*100.0)/100.0)-100;
+
+//        entity.setCodigo(request.getCodigo().toUpperCase());
+        entity.setDetalle(request.getDetalle().toUpperCase());
+        entity.setCategoria(request.getCategoria());
         entity.setMarca(request.getMarca());
         entity.setProveedores(request.getProveedores());
         entity.setProveedor_id(request.getProveedor_id());
-        entity.setColor(request.getColor());
-        entity.setMedida(request.getMedida());
+        entity.setImagen(request.getImagen());
+        entity.setColor(request.getColor().toUpperCase());
+        entity.setMedida(request.getMedida().toUpperCase());
         entity.setStock(request.getStock());
         entity.setStockMin(request.getStockMin());
         entity.setPrecioCosto(request.getPrecioCosto());

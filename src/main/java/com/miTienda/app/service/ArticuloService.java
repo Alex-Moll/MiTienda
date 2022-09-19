@@ -7,7 +7,6 @@ import com.miTienda.app.model.response.PaginationResponse;
 import java.util.Optional;
 
 public interface ArticuloService {
-
     ArticuloResponse save(ArticuloRequest request) throws Exception;
 
     PaginationResponse getPage(Optional<Integer> pageNumber, Optional<Integer> size);
@@ -17,4 +16,11 @@ public interface ArticuloService {
     void delete(Long id) throws Exception;
 
     ArticuloResponse update(Long id, ArticuloRequest request) throws Exception;
+
+    ArticuloResponse getByCodigo(String codigo) throws Exception;
+
+    ArticuloResponse updateByCodigo(String codigo, ArticuloRequest request) throws Exception;
+
+    void deleteByCodigo(String codigo) throws Exception;
+
 }

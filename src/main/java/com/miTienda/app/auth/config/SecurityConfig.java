@@ -73,57 +73,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/proveedores").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/proveedores").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 
-                // TipoArticulos
-                .antMatchers(HttpMethod.PUT, "/tipoArticulos/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-                .antMatchers(HttpMethod.POST, "/tipoArticulos").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-                .antMatchers(HttpMethod.GET, "/tipoArticulos").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-                .antMatchers(HttpMethod.DELETE, "/tipoArticulos").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                // Familias
+                .antMatchers(HttpMethod.PUT, "/familias/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                .antMatchers(HttpMethod.POST, "/familias").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                .antMatchers(HttpMethod.GET, "/familias").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                .antMatchers(HttpMethod.DELETE, "/familias").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 
                 // Articulos
                 .antMatchers(HttpMethod.PUT, "/articulos/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.POST, "/articulos").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.GET, "/articulos").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
                 .antMatchers(HttpMethod.DELETE, "/articulos").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-//
-//              // Categories
-//                .antMatchers(HttpMethod.GET, "/categories", "/categories/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-//                .antMatchers(HttpMethod.PUT, "/categories/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                .antMatchers(HttpMethod.POST, "/categories").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                .antMatchers(HttpMethod.DELETE, "/categories/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
+
+                // Marcas
+                .antMatchers(HttpMethod.PUT, "/marcas/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                .antMatchers(HttpMethod.POST, "/marcas").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                .antMatchers(HttpMethod.GET, "/marcas").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+                .antMatchers(HttpMethod.DELETE, "/marcas").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+
 //                // Comments
 //                .antMatchers(HttpMethod.GET,"/comments").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
 //                .antMatchers(HttpMethod.GET,"/posts/*/comments").hasAuthority(RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.PUT,"/comments/**").hasAuthority(RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.POST,"/comments").hasAuthority(RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.DELETE,"/comments/**").hasAuthority(RoleEnum.USER.getSimpleRoleName())
-//                // Contacts
-//                .antMatchers(HttpMethod.GET, "/contacts").hasAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                .antMatchers(HttpMethod.POST, "/contacts").hasAuthority(RoleEnum.USER.getSimpleRoleName())
-//                // Members
-//                .antMatchers(HttpMethod.GET, "/members").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                .antMatchers(HttpMethod.PUT, "/members/**").hasAuthority(RoleEnum.USER.getSimpleRoleName())
-//                .antMatchers(HttpMethod.POST, "/members").hasAuthority(RoleEnum.USER.getSimpleRoleName())
-//                .antMatchers(HttpMethod.DELETE, "/members/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                // News
-//                .antMatchers(HttpMethod.GET, "/news/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
-//                .antMatchers(HttpMethod.PUT, "/news/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                .antMatchers(HttpMethod.POST, "/news").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
-//                .antMatchers(HttpMethod.DELETE, "/news/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
 //
 //                // Organization
 //                .antMatchers(HttpMethod.GET, "/organization/public").permitAll()//hasAuthority(RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.POST, "/organization").hasAuthority(RoleEnum.ADMIN.getSimpleRoleName())
+
 //                // Slides
 //                .antMatchers(HttpMethod.GET, "/slides", "slides/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.PUT, "/slides/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
 //                .antMatchers(HttpMethod.POST, "/slides").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
 //                .antMatchers(HttpMethod.DELETE, "/slides/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName())
+
 //                // Testimonials
-//
 //                .antMatchers(HttpMethod.POST, "/testimonials").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.PUT, "/testimonials/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.DELETE, "/testimonials/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
 //                .antMatchers(HttpMethod.GET, "/testimonials/**").hasAnyAuthority(RoleEnum.ADMIN.getSimpleRoleName(), RoleEnum.USER.getSimpleRoleName())
+
                 //Swagger
                 .antMatchers(publicEndpoint).permitAll()
 

@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TipoArticuloResponse {
+public class CategoriaResponse {
 
     private Long id;
     private String nombre;

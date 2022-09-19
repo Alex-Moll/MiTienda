@@ -7,8 +7,13 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.lang.Nullable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
@@ -20,11 +25,11 @@ public class ProveedorRequest {
 
     private Long Id;
 
-    @NotNull(message = "El campo nombre no puede ser Nulo")
-    @NotBlank(message = "El campo nombre no puede estar en Blanco")
-    @NotEmpty(message = "El campo nombre no puede estar Vacio")
-    @ApiModelProperty( notes = "Nombre del Proveedor", example = "Proveedor-1", required = true)
-    private String nombre;
+    @NotNull(message = "El campo razonSocial no puede ser Nulo")
+    @NotBlank(message = "El campo razonSocial no puede estar en Blanco")
+    @NotEmpty(message = "El campo razonSocial no puede estar Vacio")
+    @ApiModelProperty( notes = "Razon Social del Proveedor", example = "Proveedor-1", required = true)
+    private String razonSocial;
 
     @Nullable
     @ApiModelProperty( notes = "domicilio del Proveedor", example = "Av. jujuy 1234")
@@ -34,10 +39,17 @@ public class ProveedorRequest {
     @ApiModelProperty( notes = "Cuit del Proveedor", example = "88-888888888-8")
     private String cuit;
 
+    private String ciudad;
+
+    private String iibb;
+
+    private String telefono;
+
+    private String telefono1;
+
     private double saldo;
 
     @CreationTimestamp
     private Timestamp timestamp;
-
 
 }

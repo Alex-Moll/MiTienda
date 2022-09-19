@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(description = "Clase que representa a los Tipo de Articulos")
-public class TipoArticuloRequest {
+public class CategoriaRequest {
 
     private Long Id;
 

@@ -1,7 +1,8 @@
 package com.miTienda.app.model.request;
 
+import com.miTienda.app.model.entity.MarcaEntity;
 import com.miTienda.app.model.entity.ProveedorEntity;
-import com.miTienda.app.model.entity.TipoArticuloEntity;
+import com.miTienda.app.model.entity.CategoriaEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,15 +34,17 @@ public class ArticuloRequest {
     private String codigo;
 
     @OneToOne
-    @JoinColumn(name = "tipo_articulo")
-    private TipoArticuloEntity tipoArticulo;
+    @JoinColumn(name = "familia")
+    private CategoriaEntity categoria;
 
     @NotNull(message = "El campo detalle no puede ser Nulo")
     @NotBlank(message = "El campo detalle no puede estar en Blanco")
     @NotEmpty(message = "El campo detalle no puede estar Vacio")
     private String detalle;
 
-    private String marca;
+    @OneToOne
+    @JoinColumn(name = "marca")
+    private MarcaEntity marca;
 
     @ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.MERGE})
     @JoinTable(name="articulo_proveedor",
@@ -50,6 +53,8 @@ public class ArticuloRequest {
     private List<ProveedorEntity> proveedores = new ArrayList<>();
 
     private String proveedor_id;
+
+    private String imagen;
 
     private String color;
 
@@ -70,4 +75,5 @@ public class ArticuloRequest {
 
     @Column(name = "soft_delete")
     private boolean softDelete = false;
+
 }
