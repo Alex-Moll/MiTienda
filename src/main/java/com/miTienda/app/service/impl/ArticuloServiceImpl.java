@@ -149,7 +149,7 @@ public class ArticuloServiceImpl implements ArticuloService {
             throw new Exception("No existe Articulo con el codigo : " + codigo);
         }
 
-        ArticuloEntity entityUpdate = articuloMapper.entityAndRequestToResponse(entityFound, request);
+        ArticuloEntity entityUpdate = articuloMapper.entityAndRequestToResponseByCode(entityFound, request);
         ArticuloEntity entitySave = articuloRepository.save(entityUpdate);
         ArticuloResponse response = articuloMapper.entityToResponse(entitySave);
 

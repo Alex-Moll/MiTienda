@@ -19,7 +19,6 @@ public class ArticuloMapper {
     public ArticuloEntity requestToEntity(ArticuloRequest request){
 
         Double margen = (request.getPrecioVenta() / request.getPrecioCosto()) * 100;
-
         margen = (Math.round(margen*100.0)/100.0)-100;
 
         return ArticuloEntity.builder()
@@ -78,7 +77,33 @@ public class ArticuloMapper {
         Double margen = (request.getPrecioVenta() / request.getPrecioCosto()) * 100;
         margen = (Math.round(margen*100.0)/100.0)-100;
 
-//        entity.setCodigo(request.getCodigo().toUpperCase());
+        entity.setId(request.getId());
+        entity.setDetalle(request.getDetalle().toUpperCase());
+        entity.setCategoria(request.getCategoria());
+        entity.setMarca(request.getMarca());
+        entity.setProveedores(request.getProveedores());
+        entity.setProveedor_id(request.getProveedor_id());
+        entity.setImagen(request.getImagen());
+        entity.setColor(request.getColor().toUpperCase());
+        entity.setMedida(request.getMedida().toUpperCase());
+        entity.setStock(request.getStock());
+        entity.setStockMin(request.getStockMin());
+        entity.setPrecioCosto(request.getPrecioCosto());
+        entity.setMargen(request.getMargen());
+        entity.setPrecioVenta(request.getPrecioVenta());
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+        entity.setTimestamp(timestamp);
+
+        return entity;
+
+    }
+
+    public ArticuloEntity entityAndRequestToResponseByCode(ArticuloEntity entity, ArticuloRequest request) {
+
+        Double margen = (request.getPrecioVenta() / request.getPrecioCosto()) * 100;
+        margen = (Math.round(margen*100.0)/100.0)-100;
+
         entity.setDetalle(request.getDetalle().toUpperCase());
         entity.setCategoria(request.getCategoria());
         entity.setMarca(request.getMarca());

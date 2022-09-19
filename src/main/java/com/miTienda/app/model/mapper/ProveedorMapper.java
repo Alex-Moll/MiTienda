@@ -55,19 +55,34 @@ public class ProveedorMapper {
 
     public ProveedorEntity entityAndRequestToResponse(ProveedorEntity entity, ProveedorRequest request) {
 
-        entity.setRazonSocial(request.getRazonSocial().toUpperCase());
-        entity.setDomicilio(request.getDomicilio().toUpperCase());
-        entity.setCuit(request.getCuit());
-        entity.setCiudad(request.getCiudad().toUpperCase());
-        entity.setIibb(request.getIibb());
-        entity.setTelefono(request.getTelefono());
-        entity.setTelefono1(request.getTelefono1());
-        entity.setSaldo(request.getSaldo());
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
-        entity.setTimestamp(timestamp);
 
-        return entity;
+        return ProveedorEntity.builder()
+                .id(request.getId())
+                .razonSocial(request.getRazonSocial().toUpperCase())
+                .domicilio(request.getDomicilio().toUpperCase())
+                .ciudad(request.getCiudad().toUpperCase())
+                .iibb(request.getIibb())
+                .telefono(request.getTelefono())
+                .telefono1(request.getTelefono1())
+                .cuit(request.getCuit())
+                .saldo(request.getSaldo())
+                .timestamp(request.getTimestamp())
+                .build();
+//        entity.setRazonSocial(request.getRazonSocial().toUpperCase());
+//        entity.setDomicilio(request.getDomicilio().toUpperCase());
+//        entity.setCuit(request.getCuit());
+//        entity.setCiudad(request.getCiudad().toUpperCase());
+//        entity.setIibb(request.getIibb());
+//        entity.setTelefono(request.getTelefono());
+//        entity.setTelefono1(request.getTelefono1());
+//        entity.setSaldo(request.getSaldo());
+//        Long datetime = System.currentTimeMillis();
+//        Timestamp timestamp = new Timestamp(datetime);
+//        entity.setTimestamp(timestamp);
+//
+//        return entity;
 
     }
 
