@@ -16,20 +16,24 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE grupos SET soft_delete = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE brands SET soft_delete = true WHERE brand_id = ?")
 @Where(clause = "soft_delete = false")
-@Table(name = "grupos")
-public class GrupoEntity implements Serializable {
+@Table(name = "brands")
+public class BrandEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "grupo_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "brand_id")
     private Long id;
 
     @NotNull(message = "El campo nombre no puede ser Nulo")
     @NotBlank(message = "El campo nombre no puede estar en Blanco")
     @NotEmpty(message = "El campo nombre no puede estar Vacio")
-    private String nombre;
+    private String name;
 
+    @Column(name = "soft_delete")
+    private boolean softDelete = false;
 
+    public BrandEntity(String name, boolean softDelete) {
+    }
 }

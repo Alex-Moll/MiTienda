@@ -22,8 +22,8 @@ import java.io.Serializable;
 public class TalleEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "talle_Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "talle_id")
     private Long id;
 
     @NotNull(message = "El campo talle no puede ser Nulo")
