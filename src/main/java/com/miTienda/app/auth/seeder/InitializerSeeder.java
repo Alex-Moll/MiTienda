@@ -1,9 +1,8 @@
 package com.miTienda.app.auth.seeder;
 
-import com.miTienda.app.model.entity.ClienteEntity;
-import com.miTienda.app.model.entity.CategoriaEntity;
-import com.miTienda.app.model.entity.MarcaEntity;
-import com.miTienda.app.model.entity.ProveedorEntity;
+import com.miTienda.app.model.entity.CategoryEntity;
+import com.miTienda.app.model.entity.BrandEntity;
+import com.miTienda.app.model.entity.ProviderEntity;
 import com.miTienda.app.model.request.UserRequest;
 import com.miTienda.app.repository.*;
 import com.miTienda.app.service.AuthService;
@@ -22,13 +21,13 @@ public class InitializerSeeder implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private ProveedorRepository proveedorRepository;
+    private ProviderRepository providerRepository;
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClientRepository clientRepository;
     @Autowired
-    private MarcaRepository marcaRepository;
+    private BrandRepository brandRepository;
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -46,7 +45,7 @@ public class InitializerSeeder implements CommandLineRunner {
 //            createCategoria();
 //        }
 
-//        if (clienteRepository.findAll().isEmpty()) {
+//        if (clientRepository.findAll().isEmpty()) {
 //            createCliente();
 //        }
 
@@ -87,28 +86,28 @@ public class InitializerSeeder implements CommandLineRunner {
         }
     }
 
-    private void createProveedor() {
-        try{
-            proveedorRepository.save(new ProveedorEntity( "bora", "Aranguren 1253",
-                    "CABA", "2022565252", "iibb 12563", "351315555", "122",
-                    100d, new Timestamp(System.currentTimeMillis()), false));
-            proveedorRepository.save(new ProveedorEntity( "Zest", "moron 5252",
-                    "CABA", "3266363365", "iibb 55636", "115252563", "134",
-                    200d, new Timestamp(System.currentTimeMillis()), false));
-            proveedorRepository.save(new ProveedorEntity( "sistar", "cuenca 547",
-                    "CABA", "4125523365", "iibb 778587", "11455888", "145",
-                    300d, new Timestamp(System.currentTimeMillis()), false));
-        }catch(Exception ex){
-            throw new RuntimeException(ex);
-        }
-
-    }
+//    private void createProveedor() {
+//        try{
+//            providerRepository.save(new ProviderEntity( "bora", "Aranguren 1253",
+//                    "CABA", "2022565252", "iibb 12563", "351315555", "122",
+//                    100d, new Timestamp(System.currentTimeMillis()), false));
+//            providerRepository.save(new ProviderEntity( "Zest", "moron 5252",
+//                    "CABA", "3266363365", "iibb 55636", "115252563", "134",
+//                    200d, new Timestamp(System.currentTimeMillis()), false));
+//            providerRepository.save(new ProviderEntity( "sistar", "cuenca 547",
+//                    "CABA", "4125523365", "iibb 778587", "11455888", "145",
+//                    300d, new Timestamp(System.currentTimeMillis()), false));
+//        }catch(Exception ex){
+//            throw new RuntimeException(ex);
+//        }
+//
+//    }
 
     private void createCategoria(){
         try{
-            categoriaRepository.save(new CategoriaEntity("familia-1", false));
-            categoriaRepository.save(new CategoriaEntity("familia-2", false));
-            categoriaRepository.save(new CategoriaEntity("familia-3", false));
+            categoryRepository.save(new CategoryEntity("familia-1", false));
+            categoryRepository.save(new CategoryEntity("familia-2", false));
+            categoryRepository.save(new CategoryEntity("familia-3", false));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -116,9 +115,9 @@ public class InitializerSeeder implements CommandLineRunner {
 
     private void createMarca(){
         try{
-            marcaRepository.save(new MarcaEntity("marca-1", false));
-            marcaRepository.save(new MarcaEntity("marca-2", false));
-            marcaRepository.save(new MarcaEntity("marca-3", false));
+            brandRepository.save(new BrandEntity("marca-1", false));
+            brandRepository.save(new BrandEntity("marca-2", false));
+            brandRepository.save(new BrandEntity("marca-3", false));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -126,13 +125,13 @@ public class InitializerSeeder implements CommandLineRunner {
 
 //    private void createCliente(){
 //        try {
-//            clienteRepository.save(new ClienteEntity("alejandro", "m28 l11", "cordoba",
+//            clientRepository.save(new ClientEntity("alejandro", "m28 l11", "cordoba",
 //                    "20225625255", "I", "alex@gm.com", "351666666", "1",
 //                    0d, 100000d, "obs", true, new Timestamp(System.currentTimeMillis()), false));
-//            clienteRepository.save(new ClienteEntity("fer", "jujuy 1234", "santiago",
+//            clientRepository.save(new ClientEntity("fer", "jujuy 1234", "santiago",
 //                    "515151515151", "F", "fer@gm.com", "11552255", "2",
 //                    0d, 400000d, "obs1", true, new Timestamp(System.currentTimeMillis()), false));
-//            clienteRepository.save(new ClienteEntity("jose", "alameda 55236", "unquillo",
+//            clientRepository.save(new ClientEntity("jose", "alameda 55236", "unquillo",
 //                    "275555555", "M", "jose@gm.com", "35899669", "3",
 //                    0d, 560000d, "obs2", true, new Timestamp(System.currentTimeMillis()), false));
 //        } catch (Exception ex) {
